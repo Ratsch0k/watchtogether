@@ -1,0 +1,29 @@
+{
+  "name": "watchtogether",
+  "version": "1.0.0",
+  "author": "Simon Kurz",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "prebuild": "rm -rf dist .cache .parcel-cache",
+    "build:tailwind": "tailwindcss build src/style.css -c ./tailwind.config.js -o dist/style.css",
+    "build:copyfiles": "cp src/manifest.json dist/ && cp src/popup.html dist/",
+    "watch": "cross-env NODE_ENV=development yarn build:tailwind && yarn build:copyfiles && parcel watch --no-hmr src/{background.js,popup.js}",
+    "build": "cross-env NODE_ENV=production yarn build:tailwind && yarn build:copyfiles && parcel build src/{background.js,popup.js}"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.2.2",
+    "apollo-link-ws": "^1.0.20",
+    "crx-hotreload": "^1.0.4",
+    "graphql": "^15.3.0",
+    "graphql-tag": "^2.11.0",
+    "subscriptions-transport-ws": "^0.9.18",
+    "tailwindcss": "^1.8.10"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.8.6",
+    "cross-env": "^7.0.2",
+    "parcel": "^2.0.0-beta.1",
+    "postcss-import": "^12.0.1"
+  }
+}

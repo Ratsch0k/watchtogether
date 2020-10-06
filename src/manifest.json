@@ -1,0 +1,17 @@
+{
+  "name": "Watch Together",
+  "version": "1.0",
+  "description": "Watch videos together",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "permissions": [
+    "activeTab",
+    "http://localhost:8080/"
+  ] 
+}
