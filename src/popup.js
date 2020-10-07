@@ -83,11 +83,11 @@ const html =
     <div class="flex">
       <button
       id="back-from-join-btn"
-      class="bg-transparent text-green-700 font-semibold py-2 px-4 rounded w-1/2 ml-1"
+      class="bg-transparent text-green-700 font-semibold py-2 px-4 rounded w-1/2 mr-1"
     >
       BACK
     </button>
-    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-1/2 mr-1" id="join-session-btn">
+    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-1/2 ml-1" id="join-session-btn">
       JOIN
     </button>
     </div>
@@ -109,15 +109,15 @@ const html =
       />
     </div>
     <div class="w-full flex mt-2">
-      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-1/2 mx-2 h-8" id="play">
+      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-1/2 mx-2 h-8" id="play-btn">
         PLAY
       </button>
-      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-1/2 mx-2 h-8" id="pause">
+      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-1/2 mx-2 h-8" id="pause-btn">
         PAUSE
       </button>
     </div>
     <div class="w-full flex mt-6">
-      <button class="bg-transparent text-green-500 font-semibold py-2 rounded h-8 w-full mx-2" id="exit-session">
+      <button class="bg-transparent text-green-500 font-semibold py-2 rounded h-8 w-full mx-2" id="exit-session-btn">
         EXIT
       </button>
     </div>
@@ -164,8 +164,9 @@ port.onMessage.addListener(function(msg) {
 
 // Get all components
 const startContainer = document.getElementById("start-container");
-const startButton = document.getElementById("play");
-const pauseButton = document.getElementById("pause");
+const startButton = document.getElementById("play-btn");
+const pauseButton = document.getElementById("pause-btn");
+const exitButton = document.getElementById("exit-session-btn")
 const controlContainer = document.getElementById("control-container");
 
 const createSessionContainer = document.getElementById("create-session-container");
@@ -188,6 +189,11 @@ startButton.onclick = function() {
 pauseButton.onclick = function() {
   port.postMessage({action: 'pause'})
 };
+
+exitButton.onclick = function() {
+  controlContainer.hidden = true;
+  startContainer.hidden = false;
+}
 
 toCreateSessionButton.onclick = function() {
   startContainer.hidden = true;
